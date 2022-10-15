@@ -49,17 +49,17 @@ subplot(2, 1, 2), stem(filtered_noise_f_phase(1:(N/2))),
 % Το δοθέν FIR φίλτρο b
 b = [-0.0415 0.1642 0.8156 0.1642 -0.0415];
 
-    % Ερώτημα α 
+    % Ερώτημα α: Περιγραφή του τύπου του φίλρου
 figure(1), clf;
 freqz(b);
 
-    % Ερώτημα β
+    % Ερώτημα β: Υπολογισμός της κρουστικής απόκρισης του φίλτρου.
 figure(2), clf;
 delta = [1 0 0 0 0 0 0 0 0];
 h = filter(b, 1, delta)
 stem(h), title('Impulse response');
 
-    % Ερώτημα γ
+    % Ερώτημα γ: Φιλτράρισμα του σήματος.
 load brainwaves.mat;
 segment = x_left(1: 1000);
 
@@ -92,7 +92,7 @@ subplot(2, 2, 4), plot(post_filter_f_magnitude(200:500)),
 %%%%%%%%%% Part Two: Task 3 %%%%%%%%%%%%%%
 %% Μελέτη φίλτρου κινούμενου ελαχίστου. %%
 
-    % Ερώτημα α
+    % Ερώτημα α: Φιλτράρισμα με εύρος παραθύρου = 5.
 t = 1:500;
 signal = sin(t) + 5*cos(3*t) + 2*cos(15*t+4) + 7*cos(25*t+4) + 3*randn(1, 500);
 
@@ -101,7 +101,7 @@ subplot(2, 1, 1), plot(signal), title('Original signal'), xlabel('time');
 subplot(2, 1, 2), plot(minfilter(signal, 5)), title('Filtered signal, w=5'), 
   xlabel('time');
   
-    % Ερώτημα β
+    % Ερώτημα β: Φιλτράρισμα με εύρος παραθύρου = 15.
 figure(2), clf;
 subplot(2, 3, 1), plot(signal), title('Original signal'), xlabel('time');
 subplot(2, 3, 2), plot(minfilter(signal, 5)), title('Filtered signal, w=5'), 
@@ -117,7 +117,7 @@ subplot(2, 3, 6), plot(abs(fft(minfilter(signal, 15)))(1:250)),
   title('Filtered signal spectrum, w=15'), xlabel('frequency'), 
   ylabel('magnitude');
   
-    % Ερώτημα γ
+    % Ερώτημα γ: απόδειξη (αντιπαράδειγμα) ότι το σύστημα δεν είναι ΓΧΑ (γραμμικό-χρονοαμετάβλητο).
 t = 1:500;
 x = sin(5*t);
 y = cos(t + 1);
